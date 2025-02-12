@@ -1,0 +1,12 @@
+FROM node:20-slim
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY tsconfig*.json ./
+COPY src/backend ./src/backend
+COPY src/types ./src/types
+
+RUN npm install
+
+CMD ["npm", "run", "start:server"] 
