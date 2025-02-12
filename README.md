@@ -58,7 +58,6 @@ POSTGRES_HOST=localhost
 
 注意: 
 - セキュリティのため、`POSTGRES_PASSWORD`は必ず変更してください
-- Docker Compose使用時は`POSTGRES_HOST=db`に変更してください
 - `.env`ファイルは`.gitignore`に含まれており、GitHubにアップロードされません
 
 4. Dockerコンテナの起動:
@@ -74,6 +73,47 @@ npm run dev
 # バックエンドサーバー
 npm run start:server
 ```
+
+## 開発環境の起動方法
+
+### 方法1: Dockerを使用する場合
+1. `.env`ファイルの設定を変更:
+```
+POSTGRES_HOST=db  # DockerのサービスホストはDBコンテナ名
+```
+
+2. Dockerコンテナを起動:
+```bash
+docker-compose up
+```
+
+これでバックエンドサーバーとデータベースが自動的に起動します。
+- データベースは`5433`ポートでホストにマップされます
+- データはDockerボリューム（postgres_data）に保存されます
+
+### 方法2: ローカルで直接起動する場合
+1. `.env`ファイルの設定を確認:
+```
+POSTGRES_HOST=localhost  # ローカルホストを使用
+```
+
+2. PostgreSQLを起動（別途インストールが必要）
+   - デフォルトポート`5432`を使用
+
+3. バックエンドサーバーを起動:
+```bash
+npm run start:server
+```
+
+4. フロントエンド開発サーバーを起動:
+```bash
+npm run dev
+```
+
+注意：
+- Docker版とローカル版では別のデータベースインスタンスが使用されます
+- それぞれのデータは独立して保存されます
+- 開発中は一貫性のために、どちらか一方の環境を選んで使用することをお勧めします
 
 ## 使用方法
 1. ブラウザで `http://localhost:5173` にアクセス
