@@ -42,10 +42,24 @@ npm install
 ```
 
 3. 環境変数の設定:
-`.env`ファイルを作成し、必要な環境変数を設定:
+`.env`ファイルを作成し、必要な環境変数を設定してください:
 ```
+# フロントエンド設定
 VITE_API_URL=http://localhost:3000/api
+VITE_APP_URL=http://localhost:5173
+
+# バックエンド設定
+PORT=3000
+POSTGRES_USER=taskapp
+POSTGRES_PASSWORD=<あなたの安全なパスワード>
+POSTGRES_DB=taskmanagement
+POSTGRES_HOST=localhost
 ```
+
+注意: 
+- セキュリティのため、`POSTGRES_PASSWORD`は必ず変更してください
+- Docker Compose使用時は`POSTGRES_HOST=db`に変更してください
+- `.env`ファイルは`.gitignore`に含まれており、GitHubにアップロードされません
 
 4. Dockerコンテナの起動:
 ```bash

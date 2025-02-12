@@ -1,7 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import pg from 'pg';
+import dotenv from 'dotenv';
 const { Pool } = pg;
+
+// 環境変数の読み込み
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
